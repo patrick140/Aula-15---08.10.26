@@ -1,13 +1,17 @@
 import pandas as pd
 
-df = pd.read_csv(r"C:\Users\patrick.araujo\OneDrive - SENAC-ARRJ\Documentos\Analista de dados\funcionarios.csv")
-dfNull = pd.read_csv(r"C:\Users\patrick.araujo\OneDrive - SENAC-ARRJ\Documentos\Analista de dados\funcionarios - Null.csv")
+df = pd.read_csv(r"C:\Users\patrick.loureiro\Documents\Aulas\funcionarios.csv")
+dfNull = pd.read_csv(r"C:\Users\patrick.loureiro\Documents\Aulas\funcionarios - Null.csv")
+
+print(dfNull.isna().sum())
 
 dfNullRemovido = dfNull.dropna(subset=['departamento']) #remove as linhas com valores nulos
 
 dfNullPreenchido = dfNull.fillna("nenhum") #preenche as linhas vazias com um valor especifico
 
-#dfNullPreenchido = dfNull['departamento'].fillna("nenhum") #para so preencher os valores nulos de uma coluna especifica
+#dfNullPreenchido['departamento'] = dfNullPreenchido['departamento'].fillna("nenhum") #para so preencher os valores nulos de uma coluna especifica
+
+dfNullPreenchido = dfNullPreenchido.fillna({'departamento': "nenhum", 'lucro': 0}) 
 
 print(dfNullPreenchido.info())
 print("\n")
